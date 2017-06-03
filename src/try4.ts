@@ -14,7 +14,7 @@ async function WorkWithStorage (): Promise<void> {
         console.log(res2);
         let res: string = await storage.get("one");
         console.log(res);
-        await storage.deleteByKey("one");
+        await storage.deleteByKey("three");
         res2 = await storage.getAll();
         console.log(res2);
         await storage.set("one", "new one value");

@@ -36,6 +36,9 @@ export class Storage2 implements IStorage {
 
     async get(key: string): Promise<string> {
         await this.checkCache();
+        if (!this.cache[key]) {
+            throw new Error("No such key \"" + key + "\"");
+        }
 
         return new Promise<string>((resolve): void => {
             resolve(this.cache[key]);
@@ -62,7 +65,7 @@ export class Storage2 implements IStorage {
         if (action == "set") {
                 this.cache[key] = value;
         }
-        if (!(this.cache[key] == undefined)) {
+        if (this.cache[key]) {
             if (action == "delete" ) {
                 delete this.cache[key];
             }
@@ -70,7 +73,7 @@ export class Storage2 implements IStorage {
                 this.cache[key] = value;
             }
         } else {
-            throw("No such key " + key);
+            throw new Error("No such key \"" + key + "\"");
         }
         await this.WriteToFile(this.cache);
     }
