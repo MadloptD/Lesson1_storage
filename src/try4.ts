@@ -2,7 +2,7 @@
  * Created by Madlopt on 02.06.2017.
  */
 
-import {Storage2, IStorageEntries} from "./Storage2";
+import {Storage2, IStorageEntries} from "./Storage";
 
 const storage = new Storage2();
 
